@@ -7,8 +7,6 @@
 #include "Util/Animation.hpp"
 #include "Util/GameObject.hpp"
 
-
-
 class AnimatedCharacter : public Util::GameObject {
 
 public:
@@ -32,6 +30,10 @@ public:
     }
     [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
+    void moveup();
+    void movedown();
+    void moveleft();
+    void moveright();
     [[nodiscard]] bool IfAnimationEnds() const;
     void SetCooldown(int Cl){
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
