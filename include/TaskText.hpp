@@ -25,16 +25,9 @@ private:
         return std::string(sv1) + "\n" + std::string(sv2);
     }
 
-    static constexpr std::string_view s_PhaseTasks[6] = {
+    static constexpr std::string_view s_PhaseTasks[1] = {
             "Press Enter to start!!!",
-            "Make the giraffe move into the red area using the keyboard!",
-            "Make the chest disappear when the giraffe touches it!",
-            "Write a program to give your bee friend an animation!",
-            "Write a program to open the door when your character touches it!",
-            "Design a program to countdown, stop animation after OK display"
     };
     static constexpr std::string_view s_Validation = "Press Enter to validate";
 };
-
-
 #endif //TASKTEXT_HPP

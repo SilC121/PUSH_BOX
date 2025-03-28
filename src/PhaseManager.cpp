@@ -1,5 +1,4 @@
 #include "PhaseResourceManger.hpp"
-
 #include "Util/Logger.hpp"
 
 PhaseResourceManger::PhaseResourceManger() {
@@ -8,7 +7,7 @@ PhaseResourceManger::PhaseResourceManger() {
 }
 
 void PhaseResourceManger::NextPhase() {
-    if (m_Phase == 7) return;
+    if (m_Phase == 4) return;
     LOG_DEBUG("Passed! Next phase: {}", m_Phase);
     m_Background->NextPhase(m_Phase);
     m_TaskText->NextPhase(m_Phase++);

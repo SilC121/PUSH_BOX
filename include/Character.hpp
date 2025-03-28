@@ -26,8 +26,6 @@ public:
     void SetImage(const std::string& ImagePath);
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
-
-    // TODO: Implement the collision detection
     [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
         if((abs(GetPosition().x - other->GetPosition().x)<=20 &&(abs(GetPosition().y - other->GetPosition().y)<=20))){
             other->SetVisible(false);
@@ -45,12 +43,8 @@ public:
             return false;
         }
     }
-
-    // TODO: Add and implement more methods and properties as needed to finish Giraffe Adventure.
-
 private:
     void ResetPosition() { m_Transform.translation = {0, 0}; }
-
     std::string m_ImagePath;
 };
 
