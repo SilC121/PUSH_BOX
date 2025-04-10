@@ -8,12 +8,7 @@
 class Character : public Util::GameObject {
 public:
 
-    enum class CharacterType {
-    Player,
-    Wall,
-    Box,
-    Goal
-};
+
     explicit Character(const std::string& ImagePath);
 
     Character(const Character&) = delete;
@@ -50,13 +45,18 @@ public:
             return false;
         }
     }
-    virtual CharacterType GetType() const = 0;
+
 private:
 
     void ResetPosition() { m_Transform.translation = {0, 0}; }
     std::string m_ImagePath;
 };
-
+    enum class CharacterType {
+    Player,
+    Wall,
+    Box,
+    Goal
+};
 
 class BoxCharacter : public Character {
 public:

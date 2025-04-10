@@ -4,7 +4,7 @@
 
 void App::Update(){
     if (Util::Input::IsKeyUp(Util::Keycode::W)){
-
+        //LoadLevel("/Level/Lv2.txt");
         m_people->SetPosition({m_people->GetPosition().x,m_people->GetPosition().y+30});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::A) ) {

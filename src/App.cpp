@@ -44,7 +44,7 @@ void App::Start() {
 }
 
 /*void App::LoadLevel(const std::string& path) {
-    m_Root.GetChildren().clear();
+    m_Root.RemoveChild();
     m_people->SetPosition({0, 0});
     LoadLevelFromTxt(path);
 }*/
@@ -57,11 +57,15 @@ void App::LoadLevelFromTxt(const std::string& path) {
         for (int col = 0; col < line.size(); ++col) {
             char ch = line[col];
             glm::vec2 pos = {col * 30.0f, row * 30.0f};
-
+            auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
+                    floor->SetPosition(pos);
+                    m_Root.AddChild(floor);
+                    floor->SetZIndex(0);
             switch (ch) {
                 case '#': {
                     auto wall = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/black_wall_circle.png");
                     wall->SetPosition(pos);
+                    wall->SetZIndex(5);
                     m_Root.AddChild(wall);
                     break;
                 }
@@ -69,33 +73,21 @@ void App::LoadLevelFromTxt(const std::string& path) {
                     auto box = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_box.png");
                     box->SetPosition(pos);
                     m_Root.AddChild(box);
-                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
-                    floor->SetPosition(pos);
-                    m_Root.AddChild(floor);
+                    box->SetZIndex(5);
                     break;
                 }
                 case '.': {
                     auto goal = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_goal.png");
                     goal->SetPosition(pos);
                     m_Root.AddChild(goal);
-                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
-                    floor->SetPosition(pos);
-                    m_Root.AddChild(floor);
+                    goal->SetZIndex(5);
                     break;
                 }
                 case '@': {
                     m_people->SetPosition(pos);
-                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
-                    floor->SetPosition(pos);
-                    m_Root.AddChild(floor);
                     break;
                 }
-                default: {
-                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
-                    floor->SetPosition(pos);
-                    m_Root.AddChild(floor);
-                    break;
-                }
+
             }
         }
         row++;
