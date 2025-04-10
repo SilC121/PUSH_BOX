@@ -25,3 +25,23 @@ void App::ValidTask() {
             break;
     }
 }
+
+/*bool App::CheckWinCondition() {
+    for (auto& obj : m_Root.GetChildren()) {
+        auto goal = std::dynamic_pointer_cast<Character>(obj);
+        if (!goal || goal->GetType() != CharacterType::Goal) continue;
+
+        bool hasBox = false;
+        for (auto& maybeBox : m_Root.GetChildren()) {
+            auto box = std::dynamic_pointer_cast<Character>(maybeBox);
+            if (!box || box->GetType() != CharacterType::Box) continue;
+
+            if (glm::distance(box->GetPosition(), goal->GetPosition()) < 10.0f) {
+                hasBox = true;
+                break;
+            }
+        }
+        if (!hasBox) return false;
+    }
+    return true;
+}*/

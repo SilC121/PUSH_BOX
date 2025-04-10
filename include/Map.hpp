@@ -8,12 +8,12 @@
 class map{
 public:
   int Level;
-  int mapcol;
-  int maprow;
+  int mapcol=20;
+  int maprow=20;
   int getLv();
-  void Chage_To_Map(map);
+  void Draw_Map();
+  void Read_Map();
   void Map_to_Vector(map);
-
 };
 
 #endif //MAP_H

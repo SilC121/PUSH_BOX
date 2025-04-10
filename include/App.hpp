@@ -19,7 +19,10 @@ public:
     };
 
     State GetCurrentState() const { return m_CurrentState; }
-
+    void LoadLevelFromTxt(const std::string& path);
+    void TryMovePlayer(const glm::vec2& dir);
+    bool CheckWinCondition();
+    void LoadLevel(const std::string& path);
     void Start();
     void Update();
     void End(); // NOLINT(readability-convert-member-functions-to-static)

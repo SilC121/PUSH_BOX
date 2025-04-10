@@ -1,5 +1,7 @@
 #include "App.hpp"
 
+#include <fstream>
+#include "Util/GameObject.hpp"
 #include "Util/Image.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
@@ -35,11 +37,104 @@ void App::Start() {
     m_people->SetLooping(true);
     m_people->SetPlaying();
     m_Root.AddChild(m_people);
-
+    LoadLevelFromTxt(RESOURCE_DIR"/Level/Lv1.txt");
     m_PRM = std::make_shared<PhaseResourceManger>();
-    m_Root.AddChildren(m_PRM->GetChildren());
+    m_Root.AddChildren(m_PRM->GetChildrenP());
     m_CurrentState = State::UPDATE;
 }
+
+/*void App::LoadLevel(const std::string& path) {
+    m_Root.GetChildren().clear();
+    m_people->SetPosition({0, 0});
+    LoadLevelFromTxt(path);
+}*/
+void App::LoadLevelFromTxt(const std::string& path) {
+    std::ifstream file(path);
+    std::string line;
+    int row = 0;
+
+    while (std::getline(file, line)) {
+        for (int col = 0; col < line.size(); ++col) {
+            char ch = line[col];
+            glm::vec2 pos = {col * 30.0f, row * 30.0f};
+
+            switch (ch) {
+                case '#': {
+                    auto wall = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/black_wall_circle.png");
+                    wall->SetPosition(pos);
+                    m_Root.AddChild(wall);
+                    break;
+                }
+                case '$': {
+                    auto box = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_box.png");
+                    box->SetPosition(pos);
+                    m_Root.AddChild(box);
+                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
+                    floor->SetPosition(pos);
+                    m_Root.AddChild(floor);
+                    break;
+                }
+                case '.': {
+                    auto goal = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_goal.png");
+                    goal->SetPosition(pos);
+                    m_Root.AddChild(goal);
+                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
+                    floor->SetPosition(pos);
+                    m_Root.AddChild(floor);
+                    break;
+                }
+                case '@': {
+                    m_people->SetPosition(pos);
+                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
+                    floor->SetPosition(pos);
+                    m_Root.AddChild(floor);
+                    break;
+                }
+                default: {
+                    auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
+                    floor->SetPosition(pos);
+                    m_Root.AddChild(floor);
+                    break;
+                }
+            }
+        }
+        row++;
+    }
+}
+/*
+void App::TryMovePlayer(const glm::vec2& dir) {
+    glm::vec2 current = m_people->GetPosition();
+    glm::vec2 next = current + dir;
+
+    // 檢查碰撞：牆壁/箱子
+    for (auto& obj : m_Root.GetChildren()) {
+        auto c = std::dynamic_pointer_cast<Character>(obj);
+        if (!c || c == m_people) continue;
+
+        if (glm::distance(c->GetPosition(), next) < 20.0f) {
+            if (c->GetType() == CharacterType::Wall) return;
+
+            if (c->GetType() == CharacterType::Box) {
+                glm::vec2 boxNext = next + dir;
+
+                // 確認箱子下一格是否能前進
+                for (auto& other : m_Root.GetChildren()) {
+                    auto block = std::dynamic_pointer_cast<Character>(other);
+                    if (!block || block == m_people || block == c) continue;
+
+                    if (glm::distance(block->GetPosition(), boxNext) < 20.0f &&
+                        block->GetType() != CharacterType::Goal) {
+                        return;
+                        }
+                }
+                c->SetPosition(boxNext); // 推箱子
+            }
+        }
+    }
+    m_people->SetPosition(next);
+}
+*/
+
 
 /*void App::Update() {
     /*

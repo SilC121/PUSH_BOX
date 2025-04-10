@@ -7,6 +7,13 @@
 
 class Character : public Util::GameObject {
 public:
+
+    enum class CharacterType {
+    Player,
+    Wall,
+    Box,
+    Goal
+};
     explicit Character(const std::string& ImagePath);
 
     Character(const Character&) = delete;
@@ -43,10 +50,24 @@ public:
             return false;
         }
     }
+    virtual CharacterType GetType() const = 0;
 private:
+
     void ResetPosition() { m_Transform.translation = {0, 0}; }
     std::string m_ImagePath;
 };
 
+
+class BoxCharacter : public Character {
+public:
+    explicit BoxCharacter(const std::string& path) : Character(path) {}
+    CharacterType GetType() const { return CharacterType::Box; }
+};
+
+class WallCharacter : public Character {
+public:
+    explicit WallCharacter(const std::string& path) : Character(path) {}
+    CharacterType GetType() const { return CharacterType::Wall; }
+};
 
 #endif //CHARACTER_HPP

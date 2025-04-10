@@ -10,7 +10,7 @@ class PhaseResourceManger {
 public:
     PhaseResourceManger();
 
-    [[nodiscard]] std::vector<std::shared_ptr<Util::GameObject>> GetChildren() const {
+    [[nodiscard]] std::vector<std::shared_ptr<Util::GameObject>> GetChildrenP() const {
         return {m_TaskText, m_Background};
     }
     void NextPhase();
