@@ -47,7 +47,7 @@ void App::LoadLevelFromTxt(const std::string& path) {
           auto goal = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_goal.png");
           goal->SetPosition(pos);
           m_Root.AddChild(goal);
-          goal->SetZIndex(5);
+          goal->SetZIndex(4);
           Goal_all.push_back(goal);
           break;
         }
