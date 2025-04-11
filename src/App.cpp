@@ -33,99 +33,73 @@ void App::Start() {
     }
     m_people = std::make_shared<AnimatedCharacter>(person_Images_down);
     m_people->SetZIndex(5);
-    m_people->SetVisible(true);
+    m_people->SetVisible(false);
     m_people->SetLooping(true);
     m_people->SetPlaying();
     m_Root.AddChild(m_people);
-    LoadLevelFromTxt(RESOURCE_DIR"/Level/Lv1.txt");
     m_PRM = std::make_shared<PhaseResourceManger>();
     m_Root.AddChildren(m_PRM->GetChildrenP());
     m_CurrentState = State::UPDATE;
 }
 
-/*void App::LoadLevel(const std::string& path) {
-    m_Root.RemoveChild();
-    m_people->SetPosition({0, 0});
+void App::LoadLevel(const std::string& path) {
+    Clean(Wall_all);
+    Wall_all.clear();
+    Clean(Floor_all);
+    Floor_all.clear();
+    Clean(Box_all);
+    Box_all.clear();
+    Clean(Goal_all);
+    Goal_all.clear();
     LoadLevelFromTxt(path);
-}*/
-void App::LoadLevelFromTxt(const std::string& path) {
-    std::ifstream file(path);
-    std::string line;
-    int row = 0;
-
-    while (std::getline(file, line)) {
-        for (int col = 0; col < line.size(); ++col) {
-            char ch = line[col];
-            glm::vec2 pos = {col * 30.0f, row * 30.0f};
-            auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
-                    floor->SetPosition(pos);
-                    m_Root.AddChild(floor);
-                    floor->SetZIndex(0);
-            switch (ch) {
-                case '#': {
-                    auto wall = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/black_wall_circle.png");
-                    wall->SetPosition(pos);
-                    wall->SetZIndex(5);
-                    m_Root.AddChild(wall);
-                    break;
-                }
-                case '$': {
-                    auto box = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_box.png");
-                    box->SetPosition(pos);
-                    m_Root.AddChild(box);
-                    box->SetZIndex(5);
-                    break;
-                }
-                case '.': {
-                    auto goal = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_goal.png");
-                    goal->SetPosition(pos);
-                    m_Root.AddChild(goal);
-                    goal->SetZIndex(5);
-                    break;
-                }
-                case '@': {
-                    m_people->SetPosition(pos);
-                    break;
-                }
-
-            }
-        }
-        row++;
+}
+void App::Clean(std::vector<std::shared_ptr<Character>> obj) {
+    for (int i = 0; i < obj.size(); i++) {
+        m_Root.RemoveChild(obj[i]);
     }
 }
-/*
-void App::TryMovePlayer(const glm::vec2& dir) {
-    glm::vec2 current = m_people->GetPosition();
-    glm::vec2 next = current + dir;
 
-    // 檢查碰撞：牆壁/箱子
-    for (auto& obj : m_Root.GetChildren()) {
-        auto c = std::dynamic_pointer_cast<Character>(obj);
-        if (!c || c == m_people) continue;
 
-        if (glm::distance(c->GetPosition(), next) < 20.0f) {
-            if (c->GetType() == CharacterType::Wall) return;
-
-            if (c->GetType() == CharacterType::Box) {
-                glm::vec2 boxNext = next + dir;
-
-                // 確認箱子下一格是否能前進
-                for (auto& other : m_Root.GetChildren()) {
-                    auto block = std::dynamic_pointer_cast<Character>(other);
-                    if (!block || block == m_people || block == c) continue;
-
-                    if (glm::distance(block->GetPosition(), boxNext) < 20.0f &&
-                        block->GetType() != CharacterType::Goal) {
-                        return;
-                        }
-                }
-                c->SetPosition(boxNext); // 推箱子
-            }
+bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Character>>& blocks) {
+    for (const auto& b : blocks) {
+        if (glm::distance(b->GetPosition(), pos) < 1e-2f) {
+            return true;
         }
     }
+    return false;
+}
+
+std::shared_ptr<Character> GetBoxAt(const glm::vec2& pos, const std::vector<std::shared_ptr<Character>>& boxes) {
+    for (const auto& box : boxes) {
+        if (glm::distance(box->GetPosition(), pos) < 1e-2f) {
+            return box;
+        }
+    }
+    return nullptr;
+}
+
+void App::TryMovePlayer(const glm::vec2& dir) {
+    glm::vec2 curr = m_people->GetPosition();
+    glm::vec2 next = curr + dir;
+
+    // 撞牆
+    if (IsBlocked(next, Wall_all)) return;
+
+    // 檢查箱子
+    auto box = GetBoxAt(next, Box_all);
+    if (box) {
+        glm::vec2 boxNext = next + dir;
+        // 箱子撞牆或撞其他箱子
+        if (IsBlocked(boxNext, Wall_all) || IsBlocked(boxNext, Box_all)) return;
+
+        // 箱子可以移動
+        box->SetPosition(boxNext);
+    }
+    // 玩家移動
     m_people->SetPosition(next);
 }
-*/
+
+
 
 
 /*void App::Update() {

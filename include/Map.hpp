@@ -6,10 +6,12 @@
 #include "Util/GameObject.hpp"
 
 class map{
-public:
+private:
   int Level;
   int mapcol=20;
   int maprow=20;
+
+public:
   int getLv();
   void Draw_Map();
   void Read_Map();

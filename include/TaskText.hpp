@@ -28,6 +28,6 @@ private:
     static constexpr std::string_view s_PhaseTasks[1] = {
             "Press Enter to start!!!",
     };
-    static constexpr std::string_view s_Validation = "Press Enter to validate";
+    static constexpr std::string_view s_Validation = "";
 };
 #endif //TASKTEXT_HPP

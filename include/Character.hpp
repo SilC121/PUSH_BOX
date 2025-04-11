@@ -7,8 +7,6 @@
 
 class Character : public Util::GameObject {
 public:
-
-
     explicit Character(const std::string& ImagePath);
 
     Character(const Character&) = delete;

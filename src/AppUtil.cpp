@@ -13,12 +13,16 @@ void App::ValidTask() {
     switch (m_Phase) {
         case Phase::Start:
             m_Phase = Phase::Playing;
+            m_PRM->NextPhase();
+            m_people->SetVisible(true);
+            LoadLevelFromTxt(RESOURCE_DIR"/Level/Lv1.txt");
             break;
 
         case Phase::Playing:
             if (true) {
                 m_Phase = Phase::Playing;
-                m_PRM->NextPhase();
+                LoadLevel(RESOURCE_DIR"/Level/Lv2.txt");
+                //m_PRM->NextPhase();
             } else {
                 LOG_DEBUG("Playing");
             }

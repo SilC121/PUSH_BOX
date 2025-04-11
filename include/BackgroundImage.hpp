@@ -12,7 +12,7 @@ public:
     }
     void NextPhase(const int phase) {
         auto temp = std::dynamic_pointer_cast<Util::Image>(m_Drawable);
-        temp->SetImage(ImagePath(phase));
+        temp->SetImage(RESOURCE_DIR"/Image/Background/levelBackground.png");
     }
 
 private:

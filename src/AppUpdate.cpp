@@ -3,18 +3,21 @@
 #include "Util/Keycode.hpp"
 
 void App::Update(){
-    if (Util::Input::IsKeyUp(Util::Keycode::W)){
-        //LoadLevel("/Level/Lv2.txt");
-        m_people->SetPosition({m_people->GetPosition().x,m_people->GetPosition().y+30});
+    if (Util::Input::IsKeyUp(Util::Keycode::W) ){
+        TryMovePlayer({0,30});
+        //m_people->SetPosition({m_people->GetPosition().x,m_people->GetPosition().y+30});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::A) ) {
-        m_people->SetPosition({m_people->GetPosition().x-30,m_people->GetPosition().y});
+        TryMovePlayer({-30,0});
+        //m_people->SetPosition({m_people->GetPosition().x-30,m_people->GetPosition().y});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::S) ) {
-        m_people->SetPosition({m_people->GetPosition().x,m_people->GetPosition().y-30});
+        TryMovePlayer({0,-30});
+        //m_people->SetPosition({m_people->GetPosition().x,m_people->GetPosition().y-30});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::D) ) {
-        m_people->SetPosition({m_people->GetPosition().x+30,m_people->GetPosition().y});
+        TryMovePlayer({30,0});
+        //m_people->SetPosition({m_people->GetPosition().x+30,m_people->GetPosition().y});
     }
     if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {
         m_CurrentState = State::END;
