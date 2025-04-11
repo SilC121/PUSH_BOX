@@ -21,7 +21,9 @@ void App::ValidTask() {
         case Phase::Playing:
             if (true) {
                 m_Phase = Phase::Playing;
-                LoadLevel(RESOURCE_DIR"/Level/Lv2.txt");
+                if (CheckWinCondition()) {
+                    LoadLevel(RESOURCE_DIR"/Level/Lv2.txt");
+                }
                 //m_PRM->NextPhase();
             } else {
                 LOG_DEBUG("Playing");
@@ -30,22 +32,16 @@ void App::ValidTask() {
     }
 }
 
-/*bool App::CheckWinCondition() {
-    for (auto& obj : m_Root.GetChildren()) {
-        auto goal = std::dynamic_pointer_cast<Character>(obj);
-        if (!goal || goal->GetType() != CharacterType::Goal) continue;
-
+bool App::CheckWinCondition() {
+    for (const auto& goal : Goal_all) {
         bool hasBox = false;
-        for (auto& maybeBox : m_Root.GetChildren()) {
-            auto box = std::dynamic_pointer_cast<Character>(maybeBox);
-            if (!box || box->GetType() != CharacterType::Box) continue;
-
-            if (glm::distance(box->GetPosition(), goal->GetPosition()) < 10.0f) {
+        for (const auto& box : Box_all) {
+            if (glm::distance(box->GetPosition(), goal->GetPosition()) < 1e-2f) {
                 hasBox = true;
                 break;
             }
         }
-        if (!hasBox) return false;
+        if (!hasBox) return false;  // 有一個目標點沒箱子
     }
     return true;
-}*/
+}

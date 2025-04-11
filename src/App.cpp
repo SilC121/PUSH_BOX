@@ -81,38 +81,12 @@ std::shared_ptr<Character> GetBoxAt(const glm::vec2& pos, const std::vector<std:
 void App::TryMovePlayer(const glm::vec2& dir) {
     glm::vec2 curr = m_people->GetPosition();
     glm::vec2 next = curr + dir;
-
-    // 撞牆
     if (IsBlocked(next, Wall_all)) return;
-
-    // 檢查箱子
     auto box = GetBoxAt(next, Box_all);
     if (box) {
         glm::vec2 boxNext = next + dir;
-        // 箱子撞牆或撞其他箱子
         if (IsBlocked(boxNext, Wall_all) || IsBlocked(boxNext, Box_all)) return;
-
-        // 箱子可以移動
         box->SetPosition(boxNext);
     }
-    // 玩家移動
     m_people->SetPosition(next);
 }
-
-
-
-
-/*void App::Update() {
-    /*
-     * Do not touch the code below as they serve the purpose for
-     * closing the window.
-
-     if (Util::Input::IsKeyUp(Util::Keycode::ESCAPE) ||
-         Util::Input::IfExit()) {
-         m_CurrentState = State::END;
-     }
-  }
-*/
-
-// void App::End() { // NOLINT(this method will mutate members in the future)
-//    LOG_TRACE("End");}
