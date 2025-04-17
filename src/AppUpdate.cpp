@@ -1,7 +1,7 @@
 #include "App.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
-
+#include "Util/Logger.hpp"
 void App::Update(){
     if (Util::Input::IsKeyUp(Util::Keycode::W) ){
         TryMovePlayer({0,30});
@@ -18,10 +18,12 @@ void App::Update(){
     if (Util::Input::IsKeyUp(Util::Keycode::N) ) {
         Lv++;
         LoadLevel();
+        LOG_DEBUG("Level {} !",Lv);
     }
     if (Util::Input::IsKeyUp(Util::Keycode::B) ) {
         Lv--;
         LoadLevel();
+        LOG_DEBUG("Level {} !",Lv);
     }
     if (Util::Input::IsKeyUp(Util::Keycode::R) ) {
         LoadLevel();
