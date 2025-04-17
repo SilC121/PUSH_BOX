@@ -3,11 +3,7 @@
 
 #include "Util/Logger.hpp"
 
-/**
- * @brief The function to validate the tasks.
- * @warning Do not modify this function.
- * @note See README.md for the task details.
- */
+
 void App::ValidTask() {
     LOG_DEBUG("Validating the task {}", static_cast<int>(m_Phase));
     switch (m_Phase) {
@@ -15,14 +11,14 @@ void App::ValidTask() {
             m_Phase = Phase::Playing;
             m_PRM->NextPhase();
             m_people->SetVisible(true);
-            LoadLevelFromTxt(RESOURCE_DIR"/Level/Lv1.txt");
+            LoadLevelFromTxt();
             break;
-
         case Phase::Playing:
             if (true) {
                 m_Phase = Phase::Playing;
                 if (CheckWinCondition()) {
-                    LoadLevel(RESOURCE_DIR"/Level/Lv2.txt");
+                    Lv++;
+                    LoadLevel();
                 }
                 //m_PRM->NextPhase();
             } else {
@@ -41,7 +37,7 @@ bool App::CheckWinCondition() {
                 break;
             }
         }
-        if (!hasBox) return false;  // 有一個目標點沒箱子
+        if (!hasBox) return false;
     }
     return true;
 }

@@ -19,10 +19,10 @@ public:
     };
 
     State GetCurrentState() const { return m_CurrentState; }
-    void LoadLevelFromTxt(const std::string& path);
+    void LoadLevelFromTxt();
     void TryMovePlayer(const glm::vec2& dir);
     bool CheckWinCondition();
-    void LoadLevel(const std::string& path);
+    void LoadLevel();
     void Clean(std::vector<std::shared_ptr<Character>> obj);
     void Start();
     void Update();
@@ -46,6 +46,7 @@ private:
     std::vector<std::shared_ptr<Character>>  Box_all;
     std::vector<std::shared_ptr<Character>>  Goal_all;
     std::shared_ptr<PhaseResourceManger> m_PRM;
+    int Lv =1;
     bool m_EnterDown = false;
 };
 

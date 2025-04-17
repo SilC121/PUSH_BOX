@@ -7,6 +7,7 @@
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 
+
 void App::Start() {
     LOG_TRACE("Start");
     std::vector<std::string> person_Images_up;
@@ -42,7 +43,7 @@ void App::Start() {
     m_CurrentState = State::UPDATE;
 }
 
-void App::LoadLevel(const std::string& path) {
+void App::LoadLevel() {
     Clean(Wall_all);
     Wall_all.clear();
     Clean(Floor_all);
@@ -51,8 +52,9 @@ void App::LoadLevel(const std::string& path) {
     Box_all.clear();
     Clean(Goal_all);
     Goal_all.clear();
-    LoadLevelFromTxt(path);
+    LoadLevelFromTxt();
 }
+
 void App::Clean(std::vector<std::shared_ptr<Character>> obj) {
     for (int i = 0; i < obj.size(); i++) {
         m_Root.RemoveChild(obj[i]);
@@ -60,9 +62,9 @@ void App::Clean(std::vector<std::shared_ptr<Character>> obj) {
 }
 
 
-bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Character>>& blocks) {
-    for (const auto& b : blocks) {
-        if (glm::distance(b->GetPosition(), pos) < 1e-2f) {
+bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Character>>& blocks){
+    for (const auto& b : blocks){
+        if (glm::distance(b->GetPosition(), pos) < 1e-2f){
             return true;
         }
     }
