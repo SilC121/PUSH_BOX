@@ -37,6 +37,8 @@ void App::Update(){
         }
     }
     m_EnterDown = Util::Input::IsKeyPressed(Util::Keycode::RETURN);
-
+    if (m_Phase==Phase::Playing) {
+        ValidTask();
+    }
     m_Root.Update();
 }

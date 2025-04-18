@@ -23,14 +23,14 @@ void App::LoadLevelFromTxt() {
       char ch = line[col];
       glm::vec2 pos = {col * 30.0f-240, row * 30.0f-180};
       if (ch !='0'){
-      auto floor = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
+      auto floor = std::make_shared<Object>(RESOURCE_DIR"/Image/Wall/concrete_floor.png");
       floor->SetPosition(pos);
       floor->SetZIndex(0);
       Floor_all.push_back(floor);
       m_Root.AddChild(floor);
       switch (ch) {
         case '1': {
-          auto wall = std::make_shared<Character>(RESOURCE_DIR"/Image/Wall/black_wall_circle.png");
+          auto wall = std::make_shared<Object>(RESOURCE_DIR"/Image/Wall/black_wall_circle.png");
           wall->SetPosition(pos);
           wall->SetZIndex(5);
           Wall_all.push_back(wall);
@@ -38,7 +38,7 @@ void App::LoadLevelFromTxt() {
           break;
         }
         case '4': {
-          auto box = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_box.png");
+          auto box = std::make_shared<Object>(RESOURCE_DIR"/Image/Box/blue_box.png");
           box->SetPosition(pos);
           m_Root.AddChild(box);
           box->SetZIndex(5);
@@ -46,7 +46,7 @@ void App::LoadLevelFromTxt() {
           break;
         }
         case '3': {
-          auto goal = std::make_shared<Character>(RESOURCE_DIR"/Image/Box/blue_goal.png");
+          auto goal = std::make_shared<Object>(RESOURCE_DIR"/Image/Box/blue_goal.png");
           goal->SetPosition(pos);
           m_Root.AddChild(goal);
           goal->SetZIndex(4);

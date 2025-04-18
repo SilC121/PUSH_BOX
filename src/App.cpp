@@ -55,14 +55,14 @@ void App::LoadLevel() {
     LoadLevelFromTxt();
 }
 
-void App::Clean(std::vector<std::shared_ptr<Character>> obj) {
+void App::Clean(std::vector<std::shared_ptr<Object>> obj) {
     for (int i = 0; i < obj.size(); i++) {
         m_Root.RemoveChild(obj[i]);
     }
 }
 
 
-bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Character>>& blocks){
+bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Object>>& blocks){
     for (const auto& b : blocks){
         if (glm::distance(b->GetPosition(), pos) < 1e-2f){
             return true;
@@ -71,7 +71,7 @@ bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Character
     return false;
 }
 
-std::shared_ptr<Character> GetBoxAt(const glm::vec2& pos, const std::vector<std::shared_ptr<Character>>& boxes) {
+std::shared_ptr<Object> GetBoxAt(const glm::vec2& pos, const std::vector<std::shared_ptr<Object>>& boxes) {
     for (const auto& box : boxes) {
         if (glm::distance(box->GetPosition(), pos) < 1e-2f) {
             return box;

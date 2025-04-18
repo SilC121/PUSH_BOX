@@ -5,7 +5,7 @@
 
 
 #include "Util/Renderer.hpp"
-#include "Character.hpp"
+#include "Object.hpp"
 #include "Util/Text.hpp"
 #include "PhaseResourceManger.hpp"
 #include "AnimatedCharacter.hpp"
@@ -23,7 +23,7 @@ public:
     void TryMovePlayer(const glm::vec2& dir);
     bool CheckWinCondition();
     void LoadLevel();
-    void Clean(std::vector<std::shared_ptr<Character>> obj);
+    void Clean(std::vector<std::shared_ptr<Object>> obj);
     void Start();
     void Update();
     void End(); // NOLINT(readability-convert-member-functions-to-static)
@@ -41,10 +41,10 @@ private:
     Util::Renderer m_Root;
     Util::Renderer m_level;
     std::shared_ptr<AnimatedCharacter> m_people;
-    std::vector<std::shared_ptr<Character>> Floor_all;
-    std::vector<std::shared_ptr<Character>>  Wall_all;
-    std::vector<std::shared_ptr<Character>>  Box_all;
-    std::vector<std::shared_ptr<Character>>  Goal_all;
+    std::vector<std::shared_ptr<Object>> Floor_all;
+    std::vector<std::shared_ptr<Object>>  Wall_all;
+    std::vector<std::shared_ptr<Object>>  Box_all;
+    std::vector<std::shared_ptr<Object>>  Goal_all;
     std::shared_ptr<PhaseResourceManger> m_PRM;
     int Lv =1;
     bool m_EnterDown = false;

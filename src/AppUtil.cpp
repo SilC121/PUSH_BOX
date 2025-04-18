@@ -5,7 +5,7 @@
 
 
 void App::ValidTask() {
-    LOG_DEBUG("Validating the task {}", static_cast<int>(m_Phase));
+    //LOG_DEBUG("Validating the task {}", static_cast<int>(m_Phase));
     switch (m_Phase) {
         case Phase::Start:
             m_Phase = Phase::Playing;
@@ -17,6 +17,7 @@ void App::ValidTask() {
             if (true) {
                 m_Phase = Phase::Playing;
                 if (CheckWinCondition()) {
+                    LOG_DEBUG("You compelete Lv{} !",Lv);
                     Lv++;
                     LoadLevel();
                 }

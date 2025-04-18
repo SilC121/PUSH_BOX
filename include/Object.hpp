@@ -5,17 +5,17 @@
 
 #include "Util/GameObject.hpp"
 
-class Character : public Util::GameObject {
+class Object : public Util::GameObject {
 public:
-    explicit Character(const std::string& ImagePath);
+    explicit Object(const std::string& ImagePath);
 
-    Character(const Character&) = delete;
+    Object(const Object&) = delete;
 
-    Character(Character&&) = delete;
+    Object(Object&&) = delete;
 
-    Character& operator=(const Character&) = delete;
+    Object& operator=(const Object&) = delete;
 
-    Character& operator=(Character&&) = delete;
+    Object& operator=(Object&&) = delete;
 
     [[nodiscard]] const std::string& GetImagePath() const { return m_ImagePath; }
 
@@ -26,7 +26,7 @@ public:
     void SetImage(const std::string& ImagePath);
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
-    [[nodiscard]] bool IfCollides(const std::shared_ptr<Character>& other) const {
+    [[nodiscard]] bool IfCollides(const std::shared_ptr<Object>& other) const {
         if((abs(GetPosition().x - other->GetPosition().x)<=20 &&(abs(GetPosition().y - other->GetPosition().y)<=20))){
             other->SetVisible(false);
             return true;
@@ -35,7 +35,7 @@ public:
             return false;
         }
     }
-    bool IfOpen(const std::shared_ptr<Character>& other) const {
+    bool IfOpen(const std::shared_ptr<Object>& other) const {
         if((abs(GetPosition().x - other->GetPosition().x)<=20 &&(abs(GetPosition().y - other->GetPosition().y)<=20))){
             return true;
         }
@@ -56,15 +56,15 @@ private:
     Goal
 };
 
-class BoxCharacter : public Character {
+class BoxCharacter : public Object {
 public:
-    explicit BoxCharacter(const std::string& path) : Character(path) {}
+    explicit BoxCharacter(const std::string& path) : Object(path) {}
     CharacterType GetType() const { return CharacterType::Box; }
 };
 
-class WallCharacter : public Character {
+class WallCharacter : public Object {
 public:
-    explicit WallCharacter(const std::string& path) : Character(path) {}
+    explicit WallCharacter(const std::string& path) : Object(path) {}
     CharacterType GetType() const { return CharacterType::Wall; }
 };
 
