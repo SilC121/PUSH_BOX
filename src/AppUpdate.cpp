@@ -11,18 +11,23 @@ void App::Update(){
     }
     if (Util::Input::IsKeyUp(Util::Keycode::S) ) {
         TryMovePlayer({0,-30});
+
     }
     if (Util::Input::IsKeyUp(Util::Keycode::D) ) {
         TryMovePlayer({30,0});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::N) ) {
-        Lv++;
-        LoadLevel();
+        if (Lv<36) {
+            Lv++;
+            LoadLevel();
+        }
         LOG_DEBUG("Level {} !",Lv);
     }
     if (Util::Input::IsKeyUp(Util::Keycode::B) ) {
-        Lv--;
-        LoadLevel();
+        if (Lv>1) {
+            Lv--;
+            LoadLevel();
+        }
         LOG_DEBUG("Level {} !",Lv);
     }
     if (Util::Input::IsKeyUp(Util::Keycode::R) ) {

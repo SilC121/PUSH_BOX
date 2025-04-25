@@ -11,11 +11,9 @@ int main(int, char**) {
             case App::State::START:
                 app.Start();
                 break;
-
             case App::State::UPDATE:
                 app.Update();
                 break;
-
             case App::State::END:
                 app.End();
                 context->SetExit(true);
