@@ -38,7 +38,7 @@ void App::LoadLevelFromTxt() {
           break;
         }
         case '4': {
-          auto box = std::make_shared<Object>(RESOURCE_DIR"/Image/Box/blue_box.png");
+          auto box = std::make_shared<Object>(RESOURCE_DIR"/Image/Box/purple_box.png");
           box->SetPosition(pos);
           m_Root.AddChild(box);
           box->SetZIndex(5);
@@ -46,7 +46,7 @@ void App::LoadLevelFromTxt() {
           break;
         }
         case '3': {
-          auto goal = std::make_shared<Object>(RESOURCE_DIR"/Image/Box/blue_goal.png");
+          auto goal = std::make_shared<Object>(RESOURCE_DIR"/Image/Box/purple_goal.png");
           goal->SetPosition(pos);
           m_Root.AddChild(goal);
           goal->SetZIndex(4);
