@@ -2,11 +2,9 @@
 #define APP_HPP
 
 #include "pch.hpp" // IWYU pragma: export
-
-
 #include "Util/Renderer.hpp"
+#include "Util/BGM.hpp"
 #include "Object.hpp"
-#include "Util/Text.hpp"
 #include "PhaseResourceManger.hpp"
 #include "AnimatedCharacter.hpp"
 
@@ -27,7 +25,7 @@ public:
     void Start();
     void Update();
     void End(); // NOLINT(readability-convert-member-functions-to-static)
-
+    void SetLevelText();
 private:
     void ValidTask();
     State m_CurrentState = State::START;
@@ -45,7 +43,9 @@ private:
     std::vector<std::shared_ptr<Object>>  Wall_all;
     std::vector<std::shared_ptr<Object>>  Box_all;
     std::vector<std::shared_ptr<Object>>  Goal_all;
+    std::shared_ptr<TaskText> m_TaskText;
     std::shared_ptr<PhaseResourceManger> m_PRM;
+    std::shared_ptr<Util::BGM> BGM;
     int Lv =1;
     bool m_EnterDown = false;
 };

@@ -3,7 +3,6 @@
 
 #include "Util/GameObject.hpp"
 #include "TaskText.hpp"
-#include "Object.hpp"
 #include "BackgroundImage.hpp"
 
 class PhaseResourceManger {

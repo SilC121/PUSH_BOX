@@ -32,12 +32,16 @@ void App::Start() {
     for (int i = 0; i < 2; ++i) {
         person_Images_right.emplace_back(RESOURCE_DIR"/Image/Character/person_right_" + std::to_string(i + 1) + ".png");
     }
+    BGM = std::make_shared<Util::BGM>(RESOURCE_DIR"/BGM/Boxxle-Soundtrack.mp3");
+    BGM->SetVolume(60);
+    BGM->Play();
     m_people = std::make_shared<AnimatedCharacter>(person_Images_down);
     m_people->SetZIndex(5);
     m_people->SetVisible(false);
     m_people->SetLooping(true);
     m_people->SetPlaying();
     m_Root.AddChild(m_people);
+    m_TaskText = std::make_shared<TaskText>();
     m_PRM = std::make_shared<PhaseResourceManger>();
     m_Root.AddChildren(m_PRM->GetChildrenP());
     m_CurrentState = State::UPDATE;
@@ -92,3 +96,4 @@ void App::TryMovePlayer(const glm::vec2& dir) {
     }
     m_people->SetPosition(next);
 }
+
