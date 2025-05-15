@@ -20,6 +20,7 @@ void App::Update(){
         if (Lv<36) {
             Lv++;
             LoadLevel();
+            SetLevelText();
         }
         LOG_DEBUG("Level {} !",Lv);
     }
@@ -27,6 +28,7 @@ void App::Update(){
         if (Lv>1) {
             Lv--;
             LoadLevel();
+            SetLevelText();
         }
         LOG_DEBUG("Level {} !",Lv);
     }

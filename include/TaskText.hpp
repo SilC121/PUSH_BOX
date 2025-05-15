@@ -27,7 +27,7 @@ public:
 
 private:
     inline static std::string append_string_views(std::string_view sv1, std::string_view sv2) {
-        return std::string(sv1) + ":" + std::string(sv2);
+        return std::string(sv1) + " : " + std::string(sv2);
     }
     static constexpr std::string_view s_PhaseTasks[2] = {
             "Press Enter to start!!!",

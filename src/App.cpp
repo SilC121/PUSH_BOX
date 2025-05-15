@@ -41,7 +41,6 @@ void App::Start() {
     m_people->SetLooping(true);
     m_people->SetPlaying();
     m_Root.AddChild(m_people);
-    m_TaskText = std::make_shared<TaskText>();
     m_PRM = std::make_shared<PhaseResourceManger>();
     m_Root.AddChildren(m_PRM->GetChildrenP());
     m_CurrentState = State::UPDATE;

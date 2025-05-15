@@ -12,6 +12,10 @@ public:
     [[nodiscard]] std::vector<std::shared_ptr<Util::GameObject>> GetChildrenP() const {
         return {m_TaskText, m_Background};
     }
+    std::shared_ptr<TaskText> GetTaskText() const {
+        return m_TaskText;
+    }
+
     void NextPhase();
 
 private:

@@ -25,9 +25,13 @@ public:
     void Start();
     void Update();
     void End(); // NOLINT(readability-convert-member-functions-to-static)
-    void SetLevelText();
+
 private:
     void ValidTask();
+    void SetLevelText(){
+        auto temp = m_PRM->GetTaskText();
+        temp->SetText(Lv);
+    };
     State m_CurrentState = State::START;
     enum class Phase {
         Start,
@@ -43,7 +47,6 @@ private:
     std::vector<std::shared_ptr<Object>>  Wall_all;
     std::vector<std::shared_ptr<Object>>  Box_all;
     std::vector<std::shared_ptr<Object>>  Goal_all;
-    std::shared_ptr<TaskText> m_TaskText;
     std::shared_ptr<PhaseResourceManger> m_PRM;
     std::shared_ptr<Util::BGM> BGM;
     int Lv =1;

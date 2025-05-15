@@ -15,11 +15,11 @@ void App::ValidTask() {
         case Phase::Playing:
             if (true) {
                 m_Phase = Phase::Playing;
-                m_TaskText->SetText(Lv);
                 if (CheckWinCondition()) {
                     LOG_DEBUG("You compelete Lv{} !",Lv);
                     Lv++;
                     LoadLevel();
+                    SetLevelText();
                 }
             } else {
                 LOG_DEBUG("Playing");
@@ -42,6 +42,3 @@ bool App::CheckWinCondition() {
     return true;
 }
 
-void App::SetLevelText() {
-    m_TaskText->SetText(Lv);
-}
