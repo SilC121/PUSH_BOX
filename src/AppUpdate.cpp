@@ -17,7 +17,7 @@ void App::Update(){
         TryMovePlayer({30,0});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::N) ) {
-        if (Lv<36) {
+        if (Lv<37) {
             Lv++;
             LoadLevel();
             SetLevelText();
@@ -25,14 +25,14 @@ void App::Update(){
         LOG_DEBUG("Level {} !",Lv);
     }
     if (Util::Input::IsKeyUp(Util::Keycode::B) ) {
-        if (Lv>1) {
+        if (Lv>1 && Lv<37) {
             Lv--;
             LoadLevel();
             SetLevelText();
         }
         LOG_DEBUG("Level {} !",Lv);
     }
-    if (Util::Input::IsKeyUp(Util::Keycode::R) ) {
+    if (Util::Input::IsKeyUp(Util::Keycode::R) && Lv < 37) {
         LoadLevel();
     }
     if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {

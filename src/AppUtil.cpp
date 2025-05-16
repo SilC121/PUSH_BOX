@@ -13,7 +13,13 @@ void App::ValidTask() {
             LoadLevelFromTxt();
             break;
         case Phase::Playing:
-            if (true) {
+            if (Lv == 37) {
+                m_Phase = Phase::End;
+                m_PRM->NextPhase();
+                m_people->SetVisible(false);
+                break;
+            }
+            if (Lv < 37) {
                 m_Phase = Phase::Playing;
                 if (CheckWinCondition()) {
                     LOG_DEBUG("You compelete Lv{} !",Lv);
@@ -24,6 +30,8 @@ void App::ValidTask() {
             } else {
                 LOG_DEBUG("Playing");
             }
+            break;
+        case Phase::End:
             break;
     }
 }
