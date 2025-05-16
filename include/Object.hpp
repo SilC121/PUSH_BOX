@@ -26,24 +26,6 @@ public:
     void SetImage(const std::string& ImagePath);
 
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
-    [[nodiscard]] bool IfCollides(const std::shared_ptr<Object>& other) const {
-        if((abs(GetPosition().x - other->GetPosition().x)<=20 &&(abs(GetPosition().y - other->GetPosition().y)<=20))){
-            other->SetVisible(false);
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-    bool IfOpen(const std::shared_ptr<Object>& other) const {
-        if((abs(GetPosition().x - other->GetPosition().x)<=20 &&(abs(GetPosition().y - other->GetPosition().y)<=20))){
-            return true;
-        }
-        else {
-            return false;
-        }
-    }
-
 private:
 
     void ResetPosition() { m_Transform.translation = {0, 0}; }

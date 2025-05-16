@@ -14,6 +14,7 @@ void App::ValidTask() {
             break;
         case Phase::Playing:
             if (Lv == 37) {
+                LOG_DEBUG("You Finlish !");
                 m_Phase = Phase::End;
                 m_PRM->NextPhase();
                 m_people->SetVisible(false);
@@ -27,7 +28,7 @@ void App::ValidTask() {
                     LoadLevel();
                     SetLevelText();
                 }
-            } else {
+            }else {
                 LOG_DEBUG("Playing");
             }
             break;

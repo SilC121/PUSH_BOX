@@ -1,4 +1,4 @@
-#include "Map.hpp"
+
 #pragma once
 
 #include <iostream>
@@ -6,11 +6,6 @@
 #include <string>
 #include <vector>
 #include"App.hpp"
-
-
-int map::getLv(){
-  return Level;
-};
 
 void App::LoadLevelFromTxt() {
   std::string path="/Level/Lv"+std::to_string(Lv)+".txt";;
