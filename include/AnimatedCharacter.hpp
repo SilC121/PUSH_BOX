@@ -28,7 +28,7 @@ public:
         auto temp = std::dynamic_pointer_cast<Util::Animation>(m_Drawable);
         temp->Play();
     }
-    [[nodiscard]] const glm::vec2& GetPosition() const { return m_Transform.translation; }
+    [[nodiscard]]  glm::vec2& GetPosition()  { return m_Transform.translation; }
     void SetPosition(const glm::vec2& Position) { m_Transform.translation = Position; }
     void moveup();
     void movedown();

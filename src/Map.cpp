@@ -1,6 +1,4 @@
-
 #pragma once
-
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -12,7 +10,6 @@ void App::LoadLevelFromTxt() {
   std::ifstream file(RESOURCE_DIR+path);
   std::string line;
   int row = 0;
-
   while (std::getline(file, line)) {
     for (int col = 0; col < line.size(); ++col) {
       char ch = line[col];

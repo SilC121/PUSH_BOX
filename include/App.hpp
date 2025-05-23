@@ -28,6 +28,7 @@ public:
 
 private:
     void ValidTask();
+    void AnimateSet(std::string path);
     void SetLevelText(){
         auto temp = m_PRM->GetTaskText();
         temp->SetText(Lv);

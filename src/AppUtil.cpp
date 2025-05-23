@@ -25,6 +25,7 @@ void App::ValidTask() {
                 if (CheckWinCondition()) {
                     LOG_DEBUG("You compelete Lv{} !",Lv);
                     Lv++;
+                    AnimateSet("down");
                     LoadLevel();
                     SetLevelText();
                 }
