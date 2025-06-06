@@ -15,5 +15,4 @@ void PhaseResourceManger::NextPhase() {
     }else {
         m_TaskText->SetVisible(false);
     }
-
 }

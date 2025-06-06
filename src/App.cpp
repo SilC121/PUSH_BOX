@@ -4,7 +4,6 @@
 #include "Util/GameObject.hpp"
 #include "Util/Image.hpp"
 #include "Util/Input.hpp"
-#include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 #include "Util/BGM.hpp"
 
@@ -17,7 +16,6 @@ void App::Start() {
     m_PRM = std::make_shared<PhaseResourceManger>();
     m_Root.AddChildren(m_PRM->GetChildrenP());
     m_CurrentState = State::UPDATE;
-
 }
 void App::AnimateSet(std::string path){
     glm::vec2 pos ={0,0};
@@ -82,7 +80,6 @@ void App::Clean(std::vector<std::shared_ptr<Object>> obj) {
         m_Root.RemoveChild(obj[i]);
     }
 }
-
 
 bool IsBlocked(const glm::vec2& pos, const std::vector<std::shared_ptr<Object>>& blocks){
     for (const auto& b : blocks){

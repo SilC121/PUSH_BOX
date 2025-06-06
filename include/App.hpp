@@ -1,7 +1,7 @@
 #ifndef APP_HPP
 #define APP_HPP
 
-#include "pch.hpp" // IWYU pragma: export
+#include "pch.hpp"
 #include "Util/Renderer.hpp"
 #include "Util/BGM.hpp"
 #include "Object.hpp"

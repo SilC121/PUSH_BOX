@@ -9,9 +9,7 @@ class TaskText : public Util::GameObject {
 public:
     TaskText() : GameObject(
             std::make_unique<Util::Text>(RESOURCE_DIR"/Font/Inkfree.ttf", 40,
-                                         s_PhaseTasks[0].data(),
-                                         Util::Color::FromName(Util::Colors::RED)),
-            100) {
+            s_PhaseTasks[0].data(),Util::Color::FromName(Util::Colors::RED)),100) {
         m_Transform.translation = {0.0F, 0.0F};
     }
 

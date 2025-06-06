@@ -8,7 +8,6 @@ void App::Update(){
         TryMovePlayer({0,30});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::A) ) {
-
         AnimateSet("left");
         TryMovePlayer({-30,0});
     }

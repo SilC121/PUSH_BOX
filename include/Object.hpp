@@ -2,7 +2,6 @@
 #define CHARACTER_HPP
 
 #include <string>
-
 #include "Util/GameObject.hpp"
 
 class Object : public Util::GameObject {
@@ -30,24 +29,6 @@ private:
 
     void ResetPosition() { m_Transform.translation = {0, 0}; }
     std::string m_ImagePath;
-};
-    enum class CharacterType {
-    Player,
-    Wall,
-    Box,
-    Goal
-};
-
-class BoxCharacter : public Object {
-public:
-    explicit BoxCharacter(const std::string& path) : Object(path) {}
-    CharacterType GetType() const { return CharacterType::Box; }
-};
-
-class WallCharacter : public Object {
-public:
-    explicit WallCharacter(const std::string& path) : Object(path) {}
-    CharacterType GetType() const { return CharacterType::Wall; }
 };
 
 #endif //CHARACTER_HPP
