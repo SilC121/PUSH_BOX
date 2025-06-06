@@ -20,7 +20,7 @@ void App::Update(){
         TryMovePlayer({30,0});
     }
     if (Util::Input::IsKeyUp(Util::Keycode::N) ) {
-        if (Lv<37) {
+        if (Lv<41) {
             Lv++;
             AnimateSet("down");
             LoadLevel();
@@ -29,7 +29,7 @@ void App::Update(){
         LOG_DEBUG("Level {} !",Lv);
     }
     if (Util::Input::IsKeyUp(Util::Keycode::B) ) {
-        if (Lv>1 && Lv<37) {
+        if (Lv>1 && Lv<41) {
             Lv--;
             AnimateSet("down");
             LoadLevel();
@@ -37,7 +37,7 @@ void App::Update(){
         }
         LOG_DEBUG("Level {} !",Lv);
     }
-    if (Util::Input::IsKeyUp(Util::Keycode::R) && Lv < 37) {
+    if (Util::Input::IsKeyUp(Util::Keycode::R) && Lv < 41) {
         AnimateSet("down");
         LoadLevel();
     }

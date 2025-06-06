@@ -13,14 +13,14 @@ void App::ValidTask() {
             LoadLevelFromTxt();
             break;
         case Phase::Playing:
-            if (Lv == 37) {
+            if (Lv == 41) {
                 LOG_DEBUG("You Finlish !");
                 m_Phase = Phase::End;
                 m_PRM->NextPhase();
                 m_people->SetVisible(false);
                 break;
             }
-            if (Lv < 37) {
+            if (Lv < 41) {
                 m_Phase = Phase::Playing;
                 if (CheckWinCondition()) {
                     LOG_DEBUG("You compelete Lv{} !",Lv);
